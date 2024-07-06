@@ -2,15 +2,14 @@ import unittest
 import demographic_data_analyzer
 
 class DemographicAnalyzerTestCase(unittest.TestCase):
-    @classmethod
-    def setUpClass(self):
+    def setUp(self):
         self.data = demographic_data_analyzer.calculate_demographic_data(print_data = False)
 
     def test_race_count(self):
         actual = self.data['race_count'].tolist()
         expected = [27816, 3124, 1039, 311, 271]
-        self.assertCountEqual(actual, expected, msg="Expected race count values to be [27816, 3124, 1039, 311, 271]")
-
+        self.assertAlmostEqual(actual, expected, msg="Expected race count values to be [27816, 3124, 1039, 311, 271]")
+    
     def test_average_age_men(self):
         actual = self.data['average_age_men']
         expected = 39.4
@@ -49,7 +48,7 @@ class DemographicAnalyzerTestCase(unittest.TestCase):
     def test_highest_earning_country_percentage(self):
         actual = self.data['highest_earning_country_percentage']
         expected = 41.9
-        self.assertAlmostEqual(actual, expected, msg="Expected different value for highest earning country percentage.")   
+        self.assertAlmostEqual(actual, expected, msg="Expected different value for heighest earning country percentage.")   
 
     def test_top_IN_occupation(self):
         actual = self.data['top_IN_occupation']
